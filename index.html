@@ -11,9 +11,9 @@
   <body>
     <main class="app">
       <header class="hero">
-        <p class="eyebrow">Сделано с любовью</p>
+        <p class="eyebrow">☁ Сделано с любовью ☁</p>
         <h1>Мамин сканворд</h1>
-        <p class="intro">Здесь спрятались дача, море и целая домашняя вселенная.</p>
+        <p class="intro">Нажми на клетку и впиши ответ.</p>
         <div class="progress-wrap" aria-label="Прогресс">
           <div class="progress-track"><span id="progressBar"></span></div>
           <span id="progressText">0 из 16</span>
@@ -21,25 +21,12 @@
       </header>
       <section class="game-card">
         <div class="board-toolbar">
-          <p>Нажми на клетку, чтобы открыть загадку</p>
+          <p>Все подсказки спрятаны в голубых клетках</p>
           <button id="resetButton" class="icon-button" type="button">Начать заново</button>
         </div>
-        <div id="boardViewport" class="board-viewport">
-          <div id="board" class="board" role="grid" aria-label="Сетка сканворда"></div>
-        </div>
+        <div id="boardViewport" class="board-viewport"><div id="board" class="board" role="grid" aria-label="Сетка сканворда"></div></div>
       </section>
-      <section id="cluePanel" class="clue-panel" aria-live="polite">
-        <div class="clue-number" id="clueNumber">1</div>
-        <div class="clue-copy"><p id="clueDirection">По горизонтали</p><h2 id="clueText">Выбери слово в сетке</h2></div>
-      </section>
-      <section class="keyboard" aria-label="Экранная клавиатура">
-        <div id="letterKeys" class="letter-keys"></div>
-        <div class="keyboard-actions"><button id="eraseButton" type="button">⌫ Стереть</button><button id="hintButton" type="button">Подсказать букву</button></div>
-      </section>
-      <section class="clue-list">
-        <div class="section-heading"><div><p class="eyebrow">Все истории</p><h2>Загадки</h2></div><button id="toggleClues" type="button" aria-expanded="false">Показать</button></div>
-        <div id="allClues" class="all-clues" hidden></div>
-      </section>
+      <input id="nativeInput" class="native-input" type="text" inputmode="text" enterkeyhint="next" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" aria-label="Ввод буквы" />
     </main>
     <div id="winModal" class="modal" hidden>
       <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="winTitle">
