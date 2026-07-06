@@ -1,0 +1,2 @@
+# mamin-scanword
+mamin-scanword
