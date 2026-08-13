@@ -1,244 +1,37 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#F3F2ED">
-<title>Yes, Chef! — исследование поваров</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#F1F0EB"><title>Yes, Chef! — исследование поваров</title>
 <style>
-:root{--paper:#F3F2ED;--ink:#111;--muted:#73716B;--line:#BBB9B0;--blue:#123CFF;--blueSoft:#DCE4FF;--white:#fff;--danger:#C43B31}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}
-body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
-button,input,textarea{font:inherit}.app{width:min(100%,620px);min-height:100svh;margin:auto;padding:18px 18px calc(22px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
-.top{display:grid;grid-template-columns:1fr auto;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--ink)}
-.brand{font-size:16px;font-weight:900;letter-spacing:-.02em}.counter{font-size:12px;color:var(--muted)}
-.progress{height:3px;background:var(--line)}.bar{height:100%;width:0;background:var(--blue);transition:width .2s}
-form{flex:1;display:flex}.screen{display:none;flex:1;flex-direction:column;padding-top:28px}.screen.active{display:flex}
-.kicker{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
-h1,h2{margin:0;max-width:550px;font-weight:900;letter-spacing:-.055em;line-height:.98}h1{font-size:clamp(42px,12vw,68px)}h2{font-size:clamp(34px,9.5vw,54px)}
-.lead{margin:18px 0 0;max-width:500px;font-size:15px;line-height:1.45;color:var(--muted)}
-.fields{display:grid;margin-top:30px;border-top:1px solid var(--ink)}
-.text,.other,textarea{width:100%;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);padding:17px 0;outline:none;font-size:18px}
-.text:focus,.other:focus,textarea:focus{border-bottom-color:var(--blue)}::placeholder{color:#95938C}
-.hint{font-size:12px;color:var(--muted);margin:14px 0 0}.options{display:grid;gap:8px;margin-top:26px}
-.option{position:relative;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;min-height:58px;border:1px solid var(--ink);padding:13px 14px;cursor:pointer}
-.option input{position:absolute;opacity:0;pointer-events:none}.bullet{width:18px;height:18px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center}
-.option[data-multi="1"] .bullet{border-radius:2px}.option.selected{background:var(--blue);border-color:var(--blue);color:var(--white)}
-.option.selected .bullet{border-color:var(--white)}.option.selected .bullet:after{content:"";width:8px;height:8px;background:var(--white);border-radius:50%}
-.option[data-multi="1"].selected .bullet:after{border-radius:1px}.otxt{font-size:17px;line-height:1.15;letter-spacing:-.02em}
-.otherWrap{display:none;margin-top:10px}.otherWrap.show{display:block}.error{min-height:18px;margin-top:12px;color:var(--danger);font-size:12px}
-.nav{display:flex;gap:8px;margin-top:auto;padding-top:30px}.btn{border:1px solid var(--ink);min-height:56px;padding:0 18px;background:transparent;color:var(--ink);font-weight:900;text-transform:uppercase}
-.back{width:58px;padding:0}.next{flex:1;background:var(--ink);color:var(--paper)}.next:active{background:var(--blue);border-color:var(--blue)}.next:disabled{opacity:.45}
-textarea{min-height:120px;resize:vertical;margin-top:28px;border-top:1px solid var(--ink);padding-top:16px}
-.note{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;line-height:1.4;color:var(--muted)}
-.success{justify-content:center}.successMark{font-size:84px;line-height:.8;color:var(--blue);margin-bottom:24px}
-@media(min-width:700px){.option:hover{background:var(--blueSoft)}.option.selected:hover{background:var(--blue)}}
+:root{--paper:#F1F0EB;--ink:#101010;--muted:#74736D;--line:#C9C7BF;--blue:#2557FF;--blueSoft:#DDE5FF;--white:#fff;--danger:#C84232}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}button,input,textarea{font:inherit}.app{width:min(100%,620px);min-height:100svh;margin:0 auto;padding:18px 18px calc(22px + env(safe-area-inset-bottom));display:flex;flex-direction:column}.top{display:grid;grid-template-columns:1fr auto;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--ink)}.brand{font-size:16px;font-weight:800;letter-spacing:-.02em;text-transform:uppercase}.counter{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}.progress{height:3px;background:var(--line);overflow:hidden}.progress__bar{height:100%;width:0;background:var(--blue);transition:width .22s ease}form{flex:1;display:flex}.screen{display:none;flex:1;flex-direction:column;padding-top:28px}.screen.active{display:flex}.kicker{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}h1,h2{margin:0;max-width:540px;font-weight:800;letter-spacing:-.055em;line-height:.98}h1{font-size:clamp(42px,12vw,68px)}h2{font-size:clamp(34px,9.5vw,54px)}.lead{margin:18px 0 0;max-width:490px;font-size:15px;line-height:1.45;color:var(--muted)}.fields{display:grid;gap:0;margin-top:30px;border-top:1px solid var(--ink)}.textInput,.other,textarea{width:100%;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);padding:17px 0;outline:none;font-size:18px}.textInput::placeholder,.other::placeholder,textarea::placeholder{color:#99978F}.textInput:focus,.other:focus,textarea:focus{border-bottom-color:var(--blue)}.hint{font-size:12px;line-height:1.4;color:var(--muted);margin:14px 0 0}.options{display:grid;gap:8px;margin-top:26px}.option{position:relative;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;min-height:58px;border:1px solid var(--ink);padding:13px 14px;background:transparent;cursor:pointer;transition:.12s}.option input{position:absolute;opacity:0;pointer-events:none}.bullet{width:18px;height:18px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center}.option[data-multi="1"] .bullet{border-radius:2px}.option.selected{background:var(--blue);border-color:var(--blue);color:var(--white)}.option.selected .bullet{border-color:var(--white)}.option.selected .bullet:after{content:"";width:8px;height:8px;background:var(--white);border-radius:50%}.option[data-multi="1"].selected .bullet:after{border-radius:1px}.otxt{font-size:17px;line-height:1.15;letter-spacing:-.02em}.otherWrap{display:none;margin-top:10px}.otherWrap.show{display:block}.error{min-height:18px;margin-top:12px;color:var(--danger);font-size:12px}.nav{display:flex;gap:8px;margin-top:auto;padding-top:30px}.btn{border:1px solid var(--ink);min-height:56px;padding:0 18px;background:transparent;color:var(--ink);font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:.02em}.btn.back{width:58px;padding:0}.btn.next{flex:1;background:var(--ink);color:var(--paper)}.btn.next:active{background:var(--blue);border-color:var(--blue)}.btn:disabled{opacity:.45}.note{margin-top:24px;padding:14px 0;border-top:1px solid var(--line);font-size:12px;line-height:1.4;color:var(--muted)}textarea{min-height:120px;resize:vertical;margin-top:28px;border-top:1px solid var(--ink);padding-top:16px}.success{justify-content:center}.successMark{font-size:84px;line-height:.8;color:var(--blue);margin-bottom:24px}.success h2{font-size:clamp(44px,12vw,70px)}@media(min-width:700px){.app{padding-left:24px;padding-right:24px}.option:hover{background:var(--blueSoft)}}
 </style>
-</head>
-<body>
-<div class="app">
-<div class="top"><div class="brand">YES, CHEF!</div><div class="counter" id="counter">2–3 минуты</div></div>
-<div class="progress"><div class="bar" id="bar"></div></div>
-<form id="survey" novalidate>
-
-<section class="screen active" data-key="profile">
-<div class="kicker">Исследование / 2026</div><h1>Как на самом деле разрабатывают блюда?</h1>
-<p class="lead">Короткий опрос для поваров и шефов. Нам важен реальный процесс, а не «правильные» ответы.</p>
-<div class="fields">
-<input class="text" name="name" autocomplete="name" placeholder="Имя" required>
-<input class="text" name="city" autocomplete="address-level2" placeholder="Город" required>
-<input class="text" name="country" autocomplete="country-name" placeholder="Страна" required>
-<input class="text" name="role" autocomplete="organization-title" placeholder="Роль — шеф, су-шеф, повар…" required>
-</div><div class="error"></div><div class="nav"><button class="btn next" type="button">Начать</button></div>
-</section>
-
-<section class="screen" data-key="q1" data-type="single">
-<div class="kicker">01 / старт</div><h2>С чего чаще начинается разработка нового блюда?</h2>
-<div class="options">
-<label class="option"><input type="radio" name="q1" value="Задача от ресторана / руководителя"><span class="bullet"></span><span class="otxt">Задача от ресторана / руководителя</span></label>
-<label class="option"><input type="radio" name="q1" value="Сезонность"><span class="bullet"></span><span class="otxt">Сезонность</span></label>
-<label class="option"><input type="radio" name="q1" value="Продукт или товарная матрица"><span class="bullet"></span><span class="otxt">Продукт или товарная матрица</span></label>
-<label class="option"><input type="radio" name="q1" value="Целевая себестоимость / food cost"><span class="bullet"></span><span class="otxt">Целевая себестоимость / food cost</span></label>
-<label class="option"><input type="radio" name="q1" value="Идея вкуса / собственная идея"><span class="bullet"></span><span class="otxt">Идея вкуса / собственная идея</span></label>
-<label class="option otherOption"><input type="radio" name="q1" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q1_other" inputmode="text" placeholder="Напиши свой вариант"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q2" data-type="single">
-<div class="kicker">02 / поиск</div><h2>Что ты обычно делаешь первым после получения задачи?</h2>
-<div class="options">
-<label class="option"><input type="radio" name="q2" value="Ищу рецепты и технологии"><span class="bullet"></span><span class="otxt">Ищу рецепты и технологии</span></label>
-<label class="option"><input type="radio" name="q2" value="Проверяю продукты / товарную матрицу"><span class="bullet"></span><span class="otxt">Проверяю продукты / товарную матрицу</span></label>
-<label class="option"><input type="radio" name="q2" value="Считаю себестоимость"><span class="bullet"></span><span class="otxt">Считаю себестоимость</span></label>
-<label class="option"><input type="radio" name="q2" value="Сразу делаю тест"><span class="bullet"></span><span class="otxt">Сразу делаю тест</span></label>
-<label class="option"><input type="radio" name="q2" value="Обсуждаю с командой"><span class="bullet"></span><span class="otxt">Обсуждаю с командой</span></label>
-<label class="option otherOption"><input type="radio" name="q2" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q2_other" inputmode="text" placeholder="Напиши свой вариант"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q3" data-type="multi">
-<div class="kicker">03 / контекст</div><h2>Что приложение должно знать о твоём ресторане заранее?</h2><p class="hint">Можно выбрать несколько.</p>
-<div class="options">
-<label class="option" data-multi="1"><input type="checkbox" name="q3" value="Товарная матрица"><span class="bullet"></span><span class="otxt">Товарная матрица</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q3" value="Оборудование кухни"><span class="bullet"></span><span class="otxt">Оборудование кухни</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q3" value="Поставщики и закупочные цены"><span class="bullet"></span><span class="otxt">Поставщики и закупочные цены</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q3" value="Допустимый food cost"><span class="bullet"></span><span class="otxt">Допустимый food cost</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q3" value="Текущее меню"><span class="bullet"></span><span class="otxt">Текущее меню</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q3" value="Время / возможности команды"><span class="bullet"></span><span class="otxt">Время / возможности команды</span></label>
-<label class="option otherOption" data-multi="1"><input type="checkbox" name="q3" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q3_other" inputmode="text" placeholder="Что ещё важно знать?"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q4" data-type="multi">
-<div class="kicker">04 / тест</div><h2>Что важно фиксировать прямо во время тестовой готовки?</h2><p class="hint">Можно выбрать несколько.</p>
-<div class="options">
-<label class="option" data-multi="1"><input type="checkbox" name="q4" value="Количество ингредиентов"><span class="bullet"></span><span class="otxt">Количество ингредиентов</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q4" value="Все изменения по ходу"><span class="bullet"></span><span class="otxt">Все изменения по ходу</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q4" value="Полуфабрикаты / компоненты"><span class="bullet"></span><span class="otxt">Отдельные полуфабрикаты / компоненты</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q4" value="Комментарии по вкусу / текстуре"><span class="bullet"></span><span class="otxt">Комментарии по вкусу / текстуре</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q4" value="Почему было принято решение"><span class="bullet"></span><span class="otxt">Почему было принято решение</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q4" value="Время и технология"><span class="bullet"></span><span class="otxt">Время и технология</span></label>
-<label class="option otherOption" data-multi="1"><input type="checkbox" name="q4" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q4_other" inputmode="text" placeholder="Что ещё фиксировать?"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q5" data-type="single">
-<div class="kicker">05 / версии</div><h2>Как ты обычно различаешь версии одного блюда?</h2>
-<div class="options">
-<label class="option"><input type="radio" name="q5" value="Номера версий"><span class="bullet"></span><span class="otxt">Номера версий</span></label>
-<label class="option"><input type="radio" name="q5" value="Даты"><span class="bullet"></span><span class="otxt">Даты</span></label>
-<label class="option"><input type="radio" name="q5" value="По тому, что именно меняли"><span class="bullet"></span><span class="otxt">По тому, что именно меняли</span></label>
-<label class="option"><input type="radio" name="q5" value="Фото / заметки"><span class="bullet"></span><span class="otxt">Фото / заметки</span></label>
-<label class="option"><input type="radio" name="q5" value="В основном держу в голове"><span class="bullet"></span><span class="otxt">В основном держу в голове</span></label>
-<label class="option"><input type="radio" name="q5" value="По-разному"><span class="bullet"></span><span class="otxt">По-разному</span></label>
-<label class="option otherOption"><input type="radio" name="q5" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q5_other" inputmode="text" placeholder="Как именно?"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q6" data-type="multi">
-<div class="kicker">06 / дегустация</div><h2>Что было бы полезно от приложения во время дегустации?</h2><p class="hint">Можно выбрать несколько.</p>
-<div class="options">
-<label class="option" data-multi="1"><input type="checkbox" name="q6" value="Различать участников по голосам"><span class="bullet"></span><span class="otxt">Различать участников по голосам</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q6" value="Записывать комментарии каждого"><span class="bullet"></span><span class="otxt">Записывать комментарии каждого</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q6" value="Собирать общий итог"><span class="bullet"></span><span class="otxt">Собирать общий итог</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q6" value="Предлагать следующую доработку"><span class="bullet"></span><span class="otxt">Предлагать следующую доработку</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q6" value="Сразу учитывать себестоимость"><span class="bullet"></span><span class="otxt">Сразу учитывать себестоимость</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q6" value="Мне это не нужно"><span class="bullet"></span><span class="otxt">Мне это не нужно</span></label>
-<label class="option otherOption" data-multi="1"><input type="checkbox" name="q6" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q6_other" inputmode="text" placeholder="Что ещё?"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q7" data-type="single">
-<div class="kicker">07 / экономика</div><h2>Когда себестоимость начинает влиять на разработку?</h2>
-<div class="options">
-<label class="option"><input type="radio" name="q7" value="До выбора рецепта / концепции"><span class="bullet"></span><span class="otxt">До выбора рецепта / концепции</span></label>
-<label class="option"><input type="radio" name="q7" value="Во время выбора вариантов"><span class="bullet"></span><span class="otxt">Во время выбора вариантов</span></label>
-<label class="option"><input type="radio" name="q7" value="После первого теста"><span class="bullet"></span><span class="otxt">После первого теста</span></label>
-<label class="option"><input type="radio" name="q7" value="После успешной дегустации"><span class="bullet"></span><span class="otxt">После успешной дегустации</span></label>
-<label class="option"><input type="radio" name="q7" value="Этим занимается не повар"><span class="bullet"></span><span class="otxt">Этим занимается не повар</span></label>
-<label class="option otherOption"><input type="radio" name="q7" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q7_other" inputmode="text" placeholder="Как у вас?"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q8" data-type="multi">
-<div class="kicker">08 / после запуска</div><h2>Откуда после запуска блюда до тебя реально доходит фидбек?</h2><p class="hint">Можно выбрать несколько.</p>
-<div class="options">
-<label class="option" data-multi="1"><input type="checkbox" name="q8" value="Гости в ресторане"><span class="bullet"></span><span class="otxt">Гости в ресторане</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q8" value="Официанты"><span class="bullet"></span><span class="otxt">Официанты</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q8" value="Менеджер / управляющий"><span class="bullet"></span><span class="otxt">Менеджер / управляющий</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q8" value="Отзывы доставки"><span class="bullet"></span><span class="otxt">Отзывы доставки</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q8" value="Возвраты / недоеденные блюда"><span class="bullet"></span><span class="otxt">Возвраты / недоеденные блюда</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q8" value="Почти никак не доходит"><span class="bullet"></span><span class="otxt">Почти никак не доходит</span></label>
-<label class="option otherOption" data-multi="1"><input type="checkbox" name="q8" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q8_other" inputmode="text" placeholder="Откуда ещё?"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q9" data-type="multi">
-<div class="kicker">09 / доставка</div><h2>Что особенно важно отслеживать для доставки?</h2><p class="hint">Можно выбрать несколько.</p>
-<div class="options">
-<label class="option" data-multi="1"><input type="checkbox" name="q9" value="Температура"><span class="bullet"></span><span class="otxt">Температура</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q9" value="Текстура после дороги"><span class="bullet"></span><span class="otxt">Текстура после дороги</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q9" value="Внешний вид"><span class="bullet"></span><span class="otxt">Внешний вид</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q9" value="Упаковка / протечки"><span class="bullet"></span><span class="otxt">Упаковка / протечки</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q9" value="Комплектность"><span class="bullet"></span><span class="otxt">Комплектность</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q9" value="Время в пути"><span class="bullet"></span><span class="otxt">Время в пути</span></label>
-<label class="option" data-multi="1"><input type="checkbox" name="q9" value="У нас нет доставки"><span class="bullet"></span><span class="otxt">У нас нет доставки</span></label>
-<label class="option otherOption" data-multi="1"><input type="checkbox" name="q9" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q9_other" inputmode="text" placeholder="Что ещё?"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div>
-</section>
-
-<section class="screen" data-key="q10" data-type="single">
-<div class="kicker">10 / Yes, Chef!</div><h2>Что бы ты первым попробовал сделать через Yes, Chef!?</h2>
-<div class="options">
-<label class="option"><input type="radio" name="q10" value="Подобрать рецепты под условия ресторана"><span class="bullet"></span><span class="otxt">Подобрать рецепты под условия ресторана</span></label>
-<label class="option"><input type="radio" name="q10" value="Записывать изменения во время готовки"><span class="bullet"></span><span class="otxt">Записывать изменения во время готовки</span></label>
-<label class="option"><input type="radio" name="q10" value="Сравнивать версии блюда"><span class="bullet"></span><span class="otxt">Сравнивать версии блюда</span></label>
-<label class="option"><input type="radio" name="q10" value="Провести и разобрать дегустацию"><span class="bullet"></span><span class="otxt">Провести и разобрать дегустацию</span></label>
-<label class="option"><input type="radio" name="q10" value="Считать себестоимость и варианты замены"><span class="bullet"></span><span class="otxt">Считать себестоимость и варианты замены</span></label>
-<label class="option"><input type="radio" name="q10" value="Собрать финальную ТТК"><span class="bullet"></span><span class="otxt">Собрать финальную ТТК</span></label>
-<label class="option"><input type="radio" name="q10" value="Анализировать фидбек гостей и доставки"><span class="bullet"></span><span class="otxt">Анализировать фидбек гостей и доставки</span></label>
-<label class="option otherOption"><input type="radio" name="q10" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label>
-</div><div class="otherWrap"><input class="other" name="q10_other" inputmode="text" placeholder="Что именно?"></div><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Последний</button></div>
-</section>
-
-<section class="screen" data-key="comment">
-<div class="kicker">Финиш</div><h2>Что мы не спросили, но это важно?</h2><p class="lead">Необязательно. Одной фразы достаточно.</p>
-<textarea name="comment" inputmode="text" placeholder="Например: «приложение обязательно должно…»"></textarea><div class="error"></div>
-<div class="nav"><button class="btn back" type="button">←</button><button class="btn next" id="submitBtn" type="button">Отправить</button></div>
-<div class="note">Для географии исследования автоматически фиксируется примерный город/регион по IP. Сам IP-адрес не сохраняется.</div>
-</section>
-
+</head><body><div class="app"><div class="top"><div class="brand">YES, CHEF!</div><div class="counter" id="counter">2–3 минуты</div></div><div class="progress"><div class="progress__bar" id="bar"></div></div><form id="survey" novalidate>
+<section class="screen active" data-key="profile"><div class="kicker">Исследование / 2026</div><h1>Как на самом деле разрабатывают блюда?</h1><p class="lead">Короткий опрос для поваров и шефов. Нам важен реальный процесс, а не «правильные» ответы.</p><div class="fields"><input class="textInput" name="name" autocomplete="name" placeholder="Имя" required><input class="textInput" name="city" autocomplete="address-level2" placeholder="Город" required><input class="textInput" name="country" autocomplete="country-name" placeholder="Страна" required><input class="textInput" name="role" autocomplete="organization-title" placeholder="Роль — шеф, су-шеф, повар…" required></div><div class="error"></div><div class="nav"><button class="btn next" type="button">Начать</button></div></section>
+<section class="screen" data-key="q1" data-type="single"><div class="kicker">01 / старт</div><h2>С чего чаще начинается разработка нового блюда?</h2><div class="options"><label class="option"><input type="radio" name="q1" value="Задача от ресторана / руководителя"><span class="bullet"></span><span class="otxt">Задача от ресторана / руководителя</span></label><label class="option"><input type="radio" name="q1" value="Сезонность"><span class="bullet"></span><span class="otxt">Сезонность</span></label><label class="option"><input type="radio" name="q1" value="Продукт или товарная матрица"><span class="bullet"></span><span class="otxt">Продукт или товарная матрица</span></label><label class="option"><input type="radio" name="q1" value="Целевая себестоимость / food cost"><span class="bullet"></span><span class="otxt">Целевая себестоимость / food cost</span></label><label class="option"><input type="radio" name="q1" value="Идея вкуса / собственная идея"><span class="bullet"></span><span class="otxt">Идея вкуса / собственная идея</span></label><label class="option otherOption"><input type="radio" name="q1" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q1_other" inputmode="text" placeholder="Напиши свой вариант"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q2" data-type="single"><div class="kicker">02 / поиск</div><h2>Что ты обычно делаешь первым после получения задачи?</h2><div class="options"><label class="option"><input type="radio" name="q2" value="Ищу рецепты и технологии"><span class="bullet"></span><span class="otxt">Ищу рецепты и технологии</span></label><label class="option"><input type="radio" name="q2" value="Проверяю продукты / товарную матрицу"><span class="bullet"></span><span class="otxt">Проверяю продукты / товарную матрицу</span></label><label class="option"><input type="radio" name="q2" value="Считаю себестоимость"><span class="bullet"></span><span class="otxt">Считаю себестоимость</span></label><label class="option"><input type="radio" name="q2" value="Сразу делаю тест"><span class="bullet"></span><span class="otxt">Сразу делаю тест</span></label><label class="option"><input type="radio" name="q2" value="Обсуждаю с командой"><span class="bullet"></span><span class="otxt">Обсуждаю с командой</span></label><label class="option otherOption"><input type="radio" name="q2" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q2_other" inputmode="text" placeholder="Напиши свой вариант"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q3" data-type="multi"><div class="kicker">03 / контекст</div><h2>Что приложение должно знать о твоём ресторане заранее?</h2><p class="hint">Можно выбрать несколько.</p><div class="options"><label class="option" data-multi="1"><input type="checkbox" name="q3" value="Товарная матрица"><span class="bullet"></span><span class="otxt">Товарная матрица</span></label><label class="option" data-multi="1"><input type="checkbox" name="q3" value="Оборудование кухни"><span class="bullet"></span><span class="otxt">Оборудование кухни</span></label><label class="option" data-multi="1"><input type="checkbox" name="q3" value="Поставщики и закупочные цены"><span class="bullet"></span><span class="otxt">Поставщики и закупочные цены</span></label><label class="option" data-multi="1"><input type="checkbox" name="q3" value="Допустимый food cost"><span class="bullet"></span><span class="otxt">Допустимый food cost</span></label><label class="option" data-multi="1"><input type="checkbox" name="q3" value="Текущее меню"><span class="bullet"></span><span class="otxt">Текущее меню</span></label><label class="option" data-multi="1"><input type="checkbox" name="q3" value="Время / возможности команды"><span class="bullet"></span><span class="otxt">Время / возможности команды</span></label><label class="option otherOption" data-multi="1"><input type="checkbox" name="q3" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q3_other" inputmode="text" placeholder="Что ещё важно знать?"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q4" data-type="multi"><div class="kicker">04 / тест</div><h2>Что важно фиксировать прямо во время тестовой готовки?</h2><p class="hint">Можно выбрать несколько.</p><div class="options"><label class="option" data-multi="1"><input type="checkbox" name="q4" value="Количество ингредиентов"><span class="bullet"></span><span class="otxt">Количество ингредиентов</span></label><label class="option" data-multi="1"><input type="checkbox" name="q4" value="Все изменения по ходу"><span class="bullet"></span><span class="otxt">Все изменения по ходу</span></label><label class="option" data-multi="1"><input type="checkbox" name="q4" value="Полуфабрикаты / компоненты"><span class="bullet"></span><span class="otxt">Отдельные полуфабрикаты / компоненты</span></label><label class="option" data-multi="1"><input type="checkbox" name="q4" value="Комментарии по вкусу / текстуре"><span class="bullet"></span><span class="otxt">Комментарии по вкусу / текстуре</span></label><label class="option" data-multi="1"><input type="checkbox" name="q4" value="Почему было принято решение"><span class="bullet"></span><span class="otxt">Почему было принято решение</span></label><label class="option" data-multi="1"><input type="checkbox" name="q4" value="Время и технология"><span class="bullet"></span><span class="otxt">Время и технология</span></label><label class="option otherOption" data-multi="1"><input type="checkbox" name="q4" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q4_other" inputmode="text" placeholder="Что ещё фиксируешь?"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q5" data-type="single"><div class="kicker">05 / версии</div><h2>Как ты обычно различаешь версии одного блюда?</h2><div class="options"><label class="option"><input type="radio" name="q5" value="Номера версий"><span class="bullet"></span><span class="otxt">Номера версий</span></label><label class="option"><input type="radio" name="q5" value="Даты"><span class="bullet"></span><span class="otxt">Даты</span></label><label class="option"><input type="radio" name="q5" value="По тому, что меняли"><span class="bullet"></span><span class="otxt">По тому, что именно меняли</span></label><label class="option"><input type="radio" name="q5" value="Фото / заметки"><span class="bullet"></span><span class="otxt">Фото / заметки</span></label><label class="option"><input type="radio" name="q5" value="Держу в голове"><span class="bullet"></span><span class="otxt">В основном держу в голове</span></label><label class="option otherOption"><input type="radio" name="q5" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q5_other" inputmode="text" placeholder="Как именно?"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q6" data-type="multi"><div class="kicker">06 / дегустация</div><h2>Что было бы полезно от приложения во время дегустации?</h2><p class="hint">Можно выбрать несколько.</p><div class="options"><label class="option" data-multi="1"><input type="checkbox" name="q6" value="Различать участников по голосам"><span class="bullet"></span><span class="otxt">Различать участников по голосам</span></label><label class="option" data-multi="1"><input type="checkbox" name="q6" value="Записывать комментарии каждого"><span class="bullet"></span><span class="otxt">Записывать комментарии каждого</span></label><label class="option" data-multi="1"><input type="checkbox" name="q6" value="Собирать общий итог"><span class="bullet"></span><span class="otxt">Собирать общий итог</span></label><label class="option" data-multi="1"><input type="checkbox" name="q6" value="Предлагать следующую доработку"><span class="bullet"></span><span class="otxt">Предлагать следующую доработку</span></label><label class="option" data-multi="1"><input type="checkbox" name="q6" value="Сразу учитывать себестоимость"><span class="bullet"></span><span class="otxt">Сразу учитывать себестоимость</span></label><label class="option" data-multi="1"><input type="checkbox" name="q6" value="Мне это не нужно"><span class="bullet"></span><span class="otxt">Мне это не нужно</span></label><label class="option otherOption" data-multi="1"><input type="checkbox" name="q6" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q6_other" inputmode="text" placeholder="Что ещё?"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q7" data-type="single"><div class="kicker">07 / деньги</div><h2>Когда себестоимость начинает влиять на разработку?</h2><div class="options"><label class="option"><input type="radio" name="q7" value="До выбора рецепта / концепции"><span class="bullet"></span><span class="otxt">До выбора рецепта / концепции</span></label><label class="option"><input type="radio" name="q7" value="Во время выбора вариантов"><span class="bullet"></span><span class="otxt">Во время выбора вариантов</span></label><label class="option"><input type="radio" name="q7" value="После первого теста"><span class="bullet"></span><span class="otxt">После первого теста</span></label><label class="option"><input type="radio" name="q7" value="После успешной дегустации"><span class="bullet"></span><span class="otxt">После успешной дегустации</span></label><label class="option"><input type="radio" name="q7" value="Этим занимается не повар"><span class="bullet"></span><span class="otxt">Этим занимается не повар</span></label><label class="option otherOption"><input type="radio" name="q7" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q7_other" inputmode="text" placeholder="Как у вас?"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q8" data-type="multi"><div class="kicker">08 / после запуска</div><h2>Откуда после запуска блюда до тебя реально доходит фидбек?</h2><p class="hint">Можно выбрать несколько.</p><div class="options"><label class="option" data-multi="1"><input type="checkbox" name="q8" value="Гости в ресторане"><span class="bullet"></span><span class="otxt">Гости в ресторане</span></label><label class="option" data-multi="1"><input type="checkbox" name="q8" value="Официанты"><span class="bullet"></span><span class="otxt">Официанты</span></label><label class="option" data-multi="1"><input type="checkbox" name="q8" value="Менеджер / управляющий"><span class="bullet"></span><span class="otxt">Менеджер / управляющий</span></label><label class="option" data-multi="1"><input type="checkbox" name="q8" value="Отзывы доставки"><span class="bullet"></span><span class="otxt">Отзывы доставки</span></label><label class="option" data-multi="1"><input type="checkbox" name="q8" value="Возвраты / недоеденные блюда"><span class="bullet"></span><span class="otxt">Возвраты / недоеденные блюда</span></label><label class="option" data-multi="1"><input type="checkbox" name="q8" value="Почти никак не доходит"><span class="bullet"></span><span class="otxt">Почти никак не доходит</span></label><label class="option otherOption" data-multi="1"><input type="checkbox" name="q8" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q8_other" inputmode="text" placeholder="Откуда ещё?"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q9" data-type="multi"><div class="kicker">09 / доставка</div><h2>Что особенно важно отслеживать для доставки?</h2><p class="hint">Можно выбрать несколько. Если доставки нет — отметь.</p><div class="options"><label class="option" data-multi="1"><input type="checkbox" name="q9" value="Температура"><span class="bullet"></span><span class="otxt">Температура</span></label><label class="option" data-multi="1"><input type="checkbox" name="q9" value="Текстура после дороги"><span class="bullet"></span><span class="otxt">Текстура после дороги</span></label><label class="option" data-multi="1"><input type="checkbox" name="q9" value="Внешний вид"><span class="bullet"></span><span class="otxt">Внешний вид</span></label><label class="option" data-multi="1"><input type="checkbox" name="q9" value="Упаковка / протечки"><span class="bullet"></span><span class="otxt">Упаковка / протечки</span></label><label class="option" data-multi="1"><input type="checkbox" name="q9" value="Комплектность"><span class="bullet"></span><span class="otxt">Комплектность</span></label><label class="option" data-multi="1"><input type="checkbox" name="q9" value="Время в пути"><span class="bullet"></span><span class="otxt">Время в пути</span></label><label class="option" data-multi="1"><input type="checkbox" name="q9" value="У нас нет доставки"><span class="bullet"></span><span class="otxt">У нас нет доставки</span></label><label class="option otherOption" data-multi="1"><input type="checkbox" name="q9" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q9_other" inputmode="text" placeholder="Что ещё?"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Дальше</button></div></section>
+<section class="screen" data-key="q10" data-type="single"><div class="kicker">10 / Yes, Chef!</div><h2>Что бы ты первым попробовал сделать через Yes, Chef!?</h2><div class="options"><label class="option"><input type="radio" name="q10" value="Подобрать рецепты под условия ресторана"><span class="bullet"></span><span class="otxt">Подобрать рецепты под условия ресторана</span></label><label class="option"><input type="radio" name="q10" value="Записывать изменения во время готовки"><span class="bullet"></span><span class="otxt">Записывать изменения во время готовки</span></label><label class="option"><input type="radio" name="q10" value="Сравнивать версии блюда"><span class="bullet"></span><span class="otxt">Сравнивать версии блюда</span></label><label class="option"><input type="radio" name="q10" value="Провести и разобрать дегустацию"><span class="bullet"></span><span class="otxt">Провести и разобрать дегустацию</span></label><label class="option"><input type="radio" name="q10" value="Считать себестоимость и варианты замены"><span class="bullet"></span><span class="otxt">Считать себестоимость и варианты замены</span></label><label class="option"><input type="radio" name="q10" value="Собрать финальную ТТК"><span class="bullet"></span><span class="otxt">Собрать финальную ТТК</span></label><label class="option"><input type="radio" name="q10" value="Анализировать фидбек гостей и доставки"><span class="bullet"></span><span class="otxt">Анализировать фидбек гостей и доставки</span></label><label class="option otherOption"><input type="radio" name="q10" value="Другое"><span class="bullet"></span><span class="otxt">Другое</span></label></div><div class="otherWrap"><input class="other" name="q10_other" inputmode="text" placeholder="Что именно?"></div><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" type="button">Последний</button></div></section>
+<section class="screen" data-key="comment"><div class="kicker">Финиш</div><h2>Что мы не спросили, но это важно?</h2><p class="lead">Необязательно. Одной фразы достаточно.</p><textarea name="comment" inputmode="text" placeholder="Например: «приложение обязательно должно…»"></textarea><div class="error"></div><div class="nav"><button class="btn back" type="button">←</button><button class="btn next" id="submitBtn" type="button">Отправить</button></div><div class="note">Для географии исследования автоматически фиксируется примерный город/регион по IP. Сам IP-адрес не сохраняется.</div></section>
 <section class="screen success" data-key="success"><div class="successMark">↗</div><h2>Спасибо.<br>Ответ принят.</h2><p class="lead">Можно возвращаться к кухне.</p></section>
 </form></div>
-
 <script>
 const ENDPOINT='https://script.google.com/macros/s/AKfycbwqSLgXsIZEA2cBsTggJT2bf56xvkHapf3H_sUzhSEvsWX5VKY1ZY9Nii2YYELYwry-1Q/exec';
-const form=document.getElementById('survey'),screens=[...document.querySelectorAll('.screen')],counter=document.getElementById('counter'),bar=document.getElementById('bar'),submitBtn=document.getElementById('submitBtn');
-let index=0,geo={city:'',region:'',country:'',country_code:'',timezone:Intl.DateTimeFormat().resolvedOptions().timeZone||''};
-const commentIndex=screens.findIndex(s=>s.dataset.key==='comment');
-
+const form=document.getElementById('survey'),screens=[...document.querySelectorAll('.screen')],counter=document.getElementById('counter'),bar=document.getElementById('bar'),submitBtn=document.getElementById('submitBtn');let index=0,geo={city:'',region:'',country:'',country_code:'',timezone:Intl.DateTimeFormat().resolvedOptions().timeZone||''};const commentIndex=screens.findIndex(s=>s.dataset.key==='comment');
 (async()=>{try{const r=await fetch('https://ipapi.co/json/');if(!r.ok)return;const d=await r.json();geo={city:d.city||'',region:d.region||'',country:d.country_name||'',country_code:d.country_code||d.country||'',timezone:d.timezone||geo.timezone};}catch(e){}})();
-
-document.querySelectorAll('.option').forEach(label=>label.addEventListener('click',()=>{
- const input=label.querySelector('input'),screen=label.closest('.screen');
- if(input.type==='radio'){screen.querySelectorAll(`input[name="${input.name}"]`).forEach(el=>el.closest('.option')?.classList.remove('selected'));label.classList.add('selected')}
- else requestAnimationFrame(()=>label.classList.toggle('selected',input.checked));
- updateOther(screen,input.name);
-}));
-
-function updateOther(screen,name){
- const wrap=screen.querySelector('.otherWrap');if(!wrap)return;
- const other=[...screen.querySelectorAll(`input[name="${name}"]`)].find(x=>x.value==='Другое'),show=!!other?.checked;
- wrap.classList.toggle('show',show);
- if(show){const f=wrap.querySelector('.other');setTimeout(()=>{f.focus({preventScroll:true});f.scrollIntoView({behavior:'smooth',block:'center'})},120)}
-}
-
-document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{if(b.id==='submitBtn')return submit();if(validate())go(index+1)}));
-document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>go(index-1)));
-
+document.querySelectorAll('.option').forEach(label=>label.addEventListener('click',()=>{const input=label.querySelector('input'),screen=label.closest('.screen');if(input.type==='radio'){screen.querySelectorAll(`input[name="${input.name}"]`).forEach(el=>el.closest('.option')?.classList.remove('selected'));label.classList.add('selected')}else requestAnimationFrame(()=>label.classList.toggle('selected',input.checked));updateOther(screen,input.name)}));
+function updateOther(screen,name){const wrap=screen.querySelector('.otherWrap');if(!wrap)return;const other=[...screen.querySelectorAll(`input[name="${name}"]`)].find(x=>x.value==='Другое'),show=!!other?.checked;wrap.classList.toggle('show',show);if(show){const f=wrap.querySelector('.other');setTimeout(()=>{f.focus({preventScroll:true});f.scrollIntoView({behavior:'smooth',block:'center'})},120)}}
+document.querySelectorAll('.next').forEach(b=>b.addEventListener('click',()=>{if(b.id==='submitBtn')return submit();if(validate())go(index+1)}));document.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>go(index-1)));
 function go(n){if(n<0||n>=screens.length)return;screens[index].classList.remove('active');index=n;screens[index].classList.add('active');document.activeElement?.blur();window.scrollTo({top:0,behavior:'instant'});progress()}
 function progress(){if(screens[index].dataset.key==='success'){bar.style.width='100%';counter.textContent='готово';return}bar.style.width=Math.max(0,Math.min(100,index/commentIndex*100))+'%';counter.textContent=index===0?'2–3 минуты':`${index} / ${commentIndex}`}
 function validate(){const s=screens[index],e=s.querySelector('.error');e.textContent='';if(s.dataset.key==='profile'){if([...s.querySelectorAll('[required]')].some(x=>!x.value.trim())){e.textContent='Заполни четыре поля.';return false}}if(['single','multi'].includes(s.dataset.type)){if(!s.querySelector('input:checked')){e.textContent='Выбери хотя бы один вариант.';return false}const o=s.querySelector('input[value="Другое"]:checked');if(o){const t=s.querySelector('.other');if(t&&!t.value.trim()){e.textContent='Напиши свой вариант.';t.focus();return false}}}return true}
 function val(name){const a=[...form.querySelectorAll(`[name="${name}"]:checked`)];if(a.length)return a.map(x=>x.value==='Другое'?`Другое: ${form.querySelector(`[name="${name}_other"]`)?.value.trim()||''}`:x.value).join(' · ');return form.querySelector(`[name="${name}"]`)?.value.trim()||''}
 function data(){return{name:val('name'),city:val('city'),country:val('country'),role:val('role'),geo_city:geo.city,geo_region:geo.region,geo_country:geo.country,geo_country_code:geo.country_code,geo_timezone:geo.timezone,q1:val('q1'),q2:val('q2'),q3:val('q3'),q4:val('q4'),q5:val('q5'),q6:val('q6'),q7:val('q7'),q8:val('q8'),q9:val('q9'),q10:val('q10'),comment:val('comment')}}
-
-async function submit(){
- submitBtn.disabled=true;submitBtn.textContent='Отправляю…';const e=screens[index].querySelector('.error');e.textContent='';
- try{
-   await fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(data())});
-   go(screens.findIndex(s=>s.dataset.key==='success'));
- }catch(err){submitBtn.disabled=false;submitBtn.textContent='Отправить';e.textContent='Не отправилось. Проверь интернет и попробуй ещё раз.'}
-}
+function submit(){submitBtn.disabled=true;submitBtn.textContent='Отправляю…';const e=screens[index].querySelector('.error');e.textContent='';try{const iframe=document.createElement('iframe');iframe.name='yeschefSink_'+Date.now();iframe.style.display='none';document.body.appendChild(iframe);const f=document.createElement('form');f.method='POST';f.action=ENDPOINT;f.target=iframe.name;f.style.display='none';Object.entries(data()).forEach(([key,value])=>{const input=document.createElement('input');input.type='hidden';input.name=key;input.value=value==null?'':String(value);f.appendChild(input)});document.body.appendChild(f);f.submit();setTimeout(()=>{f.remove();iframe.remove()},8000);setTimeout(()=>go(screens.findIndex(s=>s.dataset.key==='success')),650)}catch(err){submitBtn.disabled=false;submitBtn.textContent='Отправить';e.textContent='Не отправилось. Проверь интернет и попробуй ещё раз.'}}
 progress();
-</script>
-</body></html>
+</script></body></html>
